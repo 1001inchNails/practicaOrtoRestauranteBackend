@@ -1,0 +1,109 @@
+sistema de reservas restaurante (con documentación latex (tecnologías, puntos interesantes, bibliografía, etc) y figma)
+
+aplicación de movil que haga los pedidos
+aplicación de escritorio que controle las comandas
+
+
+5 mesas, cada una puede realizar un pedido de los menus, poner cantidades y precios.
+Poder salir de la mesa sin pedir nada (si no se ha pedido nada aun).
+Cuando se realiza un pedido  (estado "en proceso") este se bloquea en ambos lados hasta que se sirve, entonces se desbloquea y se puede volver a pedir y/o pagar.
+De esta manera la comanda se puede ir ampliando hasta que se pulsa pagar. Si la comanda está vacia pagar nunca se activa.
+Desde la app de móvil hay que seleccionar desde que mesa estamos haciendo pedido, y que no se pueda elegir una mesa que ya esté ocupada.
+Dar lista con detalles de productos y precios al pagar.
+
+En escritorio se confirman las comandas, y se marcan como enviadas a mesa.
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+Base de datos:
+colección menus:
+	{
+	id
+	nombreProducto
+	descripción
+	precio
+	}
+colección mesas:
+	documentos mesaX:
+		ArrayList objetosJson "productosRecibidosEnMesa"
+		String numeroDeMesa
+		boolean mesaOcupada: true/false
+		boolean pedidoEnEsperaDeAceptar: true/false (se activa al hacer pedido desde movil) (anula botones de pedir y pagar)
+		boolean pedidoEnviado: true/false (se activa al aceptar pedido desde desktop) (desbloquea botones de pedir y pagar)
+		boolean updatesPendiente: true/false
+			boolean updatesDesktopPendiente: true/false
+			boolean updatesDMovilPendiente: true/false
+		(Cada vez que hay un cambio (transacción) en cualquiera de los clientes en esa mesa el valor updatePendiente cambia a true, al igual que los "sub-booleans")
+		(si updatePendiente == true, cuando desktop y móvil lean la BBDD comprueban si tienen que updatear los datos (updatesDesktopPendiente/updatesDMovilPendiente))
+		(despues de updatear el "sub-boolean" correspondiente vuelve a false. Chequeo de si los dos "sub-booleans" son false, en ese caso updatesPendiente = false)
+Menus (cargados desde base de datos)
+Arraylist objetos json
+{
+id
+nombreProducto
+descripción
+precio
+}
+
+Clase Mesa (Movil)
+ArrayList objetosJson "pedidoEnCurso" (solo sirve para meter los productos en el momento de hacer el envió, recoje directamente los productos de los textView del menú)
+ArrayList objetosJson "productosRecibidosEnMesa" (la mesa tiene que saber cuanto y que lleva consumido en todo momento)
+String numeroDeMesa
+boolean mesaOcupada: true/false (si es false no se pueden usar los menus o ningún boton)
+boolean pedidoEnEsperaDeAceptar: true/false
+
+
+Funciones:
+- hacerPedido(): enviar productos seleccionados (si los hay) a la base de datos
+- salir(): sale sin pagar si no hay nada en arraylist pedido 
+- pagar(): coje la lista de todos los productos que esa mesa haya pedido en la base de datos (a pesar de estar productosRecibidosEnMesa es mejor que recoja los datos de la BBDD) y marca como pagado (mesaOcupada = false)
+
+Clase Mesa (Escritorio)
+ArrayList objetosJson "pedidoEnCurso"
+ArrayList objetosJson "productosRecibidosEnMesa"
+String numeroDeMesa
+boolean mesaOcupada: true/false
+boolean pedidoEnEsperaDeAceptar: true/false
+
+Funciones:
+- enviarPedido(): envia productos seleccionados a la mesa
+
+---------------------------------------------------------------------------------------------------------------------------------
+Flujo:
+-Sentarse en mesa (elegir mesa en Móvil app que tenga mesaOcupada = false)
+	estado mesa X mesaOcupada = true (desktop y movil)
+	animación o barra de "Cargando" por al menos la duración del intervalo de lectura de datos en BBDD
+	botón pagar (movil) = invisible
+	botón pedir (movil) = visible
+
+- No pedir nada y salir de la mesa X
+	estado mesa X mesaOcupada = false (desktop y movil)
+	botón pagar (movil) = invisible
+	botón pedir (movil) = invisible
+	reset()
+	
+-enviar pedido a cocina
+	payload = pedidoEnCurso
+	mesa X pedidoEnEsperaDeAceptar = true (desktop y movil)
+	botón pagar (movil) = invisible
+	botón pedir (movil) = invisible
+	mesa X (desktop) botón enviarPedido(a mesa X) = visible
+
+- enviar productos de pedido a mesa
+	BBDD productosRecibidosEnMesa = payload
+	mesa X (desktop y movil) productosRecibidosEnMesa = payload
+	mesa X pedidoEnEsperaDeAceptar = false (desktop y movil)
+	botón pagar (movil) = visible
+	botón pedir (movil) = visible
+
+- pagar cuenta
+	BBDD productosRecibidosEnMesa = mostrar factura al detalle
+	resetear mesa X en base de datos a valores iniciales (opcional, almacenar en colección de historial de transacciones)
+	espera a que el reseteo acabe
+	sleep() X segundos (intervalo de lectura de BBDD)
+	cambia mesaOcupada = false
+
+---------------------------------------------------------------------------------------------------------------------------------
+Lectura de valores desde base de datos (intervalo 5 segundos?):
+	- chequeo de que mesas tienen valor updatesPendiente = true, y haga las operaciones que le correspondan, dependiendo de si es movil o desktop	
+	- si true, despues de las operaciones, chequeo de "sub-booleans"	

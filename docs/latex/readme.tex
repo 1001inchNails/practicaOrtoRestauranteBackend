@@ -1,0 +1,281 @@
+\documentclass[12pt]{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage[section]{placeins}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks = true,
+    linkcolor = blue,
+    urlcolor = cyan
+}
+
+\geometry{a4paper, margin=2.5cm}
+
+\title{Documentación de API de Gestión de Restaurante}
+\author{Daniel Calvar Cruz}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+\newpage
+
+\section{Introducción}
+\hyperlink{anchor-indice}{\textbf{Volver}}\\
+
+Esta API proporciona un sistema completo para la gestión de un restaurante, incluyendo el manejo de productos del menú y pedidos de mesas.\\
+
+La API está construida con Express.js y utiliza MongoDB como base de datos.
+
+\section{Estructura}
+
+\subsection{Rutas Principales}
+La API está organizada en tres módulos principales:
+
+\begin{itemize}
+    \item \textbf{POST}: Operaciones de creación
+    \item \textbf{GET}: Operaciones de lectura
+    \item \textbf{DELETE}: Operaciones de eliminación
+\end{itemize}
+
+\subsection{Modelos de Datos}
+
+\subsubsection{Modelo Producto}
+\begin{verbatim}
+const ProductoSchema = new mongoose.Schema({
+  id: { type: Number },
+  nombre: { type: String },
+  precio: { type: Number },
+  descripcion: { type: String }
+});
+\end{verbatim}
+
+\subsubsection{Modelo Mesa}
+\begin{verbatim}
+const Mesa1Schema = new mongoose.Schema({
+  pedidos: { type: Array }
+});
+
+"pedidos": array de objetos Producto.
+\end{verbatim}
+
+\clearpage
+
+\section{Endpoints}
+\hyperlink{anchor-indice}{\textbf{Volver}}\\
+
+\subsection{Endpoints POST}
+
+\subsubsection{POST /post/createobjetomenu}
+\textbf{Descripción:} Crea un nuevo producto en el menú.\\
+
+\textbf{Body:}
+\begin{verbatim}
+{
+  "nombre": "string",
+  "precio": "number",
+  "descripcion": "string"
+}
+\end{verbatim}
+
+\textbf{Respuestas:}
+\begin{itemize}
+    \item \textbf{200}: Documento creado exitosamente
+    \item \textbf{400}: Error en los datos proporcionados
+    \item \textbf{500}: Error interno del servidor
+\end{itemize}
+
+\subsubsection{POST /post/mandarpedidoamesa}
+\textbf{Descripción:} Envía un pedido a una mesa específica.\\
+
+\textbf{Body:}
+\begin{verbatim}
+{
+  "mesa": "string",
+  "pedidos": [
+    {
+      "id": "number",
+      "nombre": "string",
+      "precio": "number",
+      "descripcion": "string"
+    }
+  ]
+}
+"mesa": Mesa1, Mesa2, etc.
+"pedidos": array de productos.
+\end{verbatim}
+
+\textbf{Respuestas:}
+\begin{itemize}
+    \item \textbf{200}: Pedidos creados exitosamente
+    \item \textbf{400}: Error en los datos del pedido
+    \item \textbf{500}: Error interno del servidor
+\end{itemize}
+
+\clearpage
+
+\subsection{Endpoints GET}
+\hyperlink{anchor-indice}{\textbf{Volver}}\\
+
+\subsubsection{GET /get/readallmenus}
+\textbf{Descripción:} Obtiene todos los productos del menú.\\
+
+\textbf{Parámetros:} Ninguno\\
+
+\textbf{Respuestas:}
+\begin{itemize}
+    \item \textbf{200}: Información encontrada con datos
+    \item \textbf{404}: Documentos no encontrados
+    \item \textbf{500}: Error interno del servidor
+\end{itemize}
+
+\subsubsection{GET /get/readmesa}
+\textbf{Descripción:} Obtiene los pedidos de una mesa específica.\\
+
+\textbf{Parámetros:}
+\begin{itemize}
+    \item \texttt{mesaId}: Identificador de la mesa (ej: "Mesa1")
+\end{itemize}
+
+\textbf{Respuestas:}
+\begin{itemize}
+    \item \textbf{200}: Información encontrada
+    \item \textbf{400}: Modelo no encontrado
+    \item \textbf{404}: No hay datos en la colección
+    \item \textbf{500}: Error en proceso de búsqueda
+\end{itemize}
+
+\clearpage
+
+\subsection{Endpoints DELETE}
+\hyperlink{anchor-indice}{\textbf{Volver}}\\
+
+\subsubsection{DELETE /delete/deletemesa}
+\textbf{Descripción:} Elimina todos los pedidos de una mesa específica.\\
+
+\textbf{Parámetros:}
+\begin{itemize}
+    \item \texttt{mesaId}: Identificador de la mesa (ej: "Mesa1")
+\end{itemize}
+
+\textbf{Respuestas:}
+\begin{itemize}
+    \item \textbf{200}: Información borrada exitosamente
+    \item \textbf{400}: Modelo no encontrado
+    \item \textbf{500}: Error en proceso de borrado
+\end{itemize}
+
+\clearpage
+
+\section{Flujos de Trabajo}
+\hyperlink{anchor-indice}{\textbf{Volver}}\\
+
+\subsection{Agregar Producto al Menú}
+\begin{enumerate}
+    \item El sistema genera automáticamente un ID incremental
+    \item Valida que los datos del producto sean correctos
+    \item Guarda el producto en la colección Producto
+\end{enumerate}
+
+\subsection{Realizar un Pedido}
+\begin{enumerate}
+    \item Valida que los productos existan en la base de datos
+    \item Verifica la estructura de los datos del pedido
+    \item Guarda el pedido en la mesa correspondiente
+\end{enumerate}
+
+\clearpage
+
+\section{Manejo de Errores}
+\hyperlink{anchor-indice}{\textbf{Volver}}\\
+
+La API utiliza un sistema consistente de respuestas:
+
+\begin{verbatim}
+{
+  "type": "success|failure",
+  "message": "string descriptivo",
+  "data": "object (opcional)"
+}
+\end{verbatim}
+
+\section{Ejemplos de Uso}
+
+\subsection{Ejemplo: Crear Producto}
+\begin{verbatim}
+POST /post/createObjetoMenu
+{
+  "nombre": "Hamburguesa Clásica",
+  "precio": 12.99,
+  "descripcion": "Hamburguesa con queso, lechuga y tomate"
+}
+\end{verbatim}
+
+\subsection{Ejemplo: Hacer Pedido}
+\begin{verbatim}
+POST /post/mandarPedidoAMesa
+{
+  "mesa": "Mesa1",
+  "pedidos": [
+    {
+      "id": 1,
+      "nombre": "Hamburguesa Clásica",
+      "precio": 12.99,
+      "descripcion": "Hamburguesa con queso, lechuga y tomate"
+    }
+  ]
+}
+\end{verbatim}
+
+\clearpage
+
+\section{Consideraciones Técnicas}
+\hyperlink{anchor-indice}{\textbf{Volver}}\\
+
+\begin{itemize}
+    \item Los IDs de productos se generan automáticamente de forma incremental
+    \item Las mesas deben estar predefinidas en los modelos (Mesa1, Mesa2, etc.)
+    \item Todos los precios deben ser números válidos
+    \item La API valida la existencia de productos antes de crear pedidos
+\end{itemize}
+
+\section{Códigos de Estado HTTP}
+
+\begin{itemize}
+    \item \textbf{200 OK}: Operación exitosa
+    \item \textbf{400 Bad Request}: Error en los datos enviados
+    \item \textbf{404 Not Found}: Recurso no encontrado
+    \item \textbf{500 Internal Server Error}: Error del servidor
+\end{itemize}
+
+\section{Stack tecnológico}
+
+\begin{itemize}
+    \item \textbf{Versión Node.js:} 22.14
+    \item \textbf{Base de datos:} MongoDB Atlas
+    \item \textbf{Dependencias NPM:}
+    \begin{itemize}
+        \item \textbf{cors:} 2.8.5
+        \item \textbf{dotenv:} 16.4.7
+        \item \textbf{express:} 4.21.1
+        \item \textbf{mongodb:} 6.12.0
+        \item \textbf{mongoose:} 8.13.2
+        \item \textbf{nodemon:} 3.1.10  
+    \end{itemize}
+\end{itemize}
+
+\section{Variables de entorno (.env)}
+
+    \begin{itemize}
+    \item \texttt{MONGO\_URI}: URI de conexión a MongoDB Atlas o local.
+    \item \texttt{PORT}: Puerto en el que se ejecutará el servidor.
+    \item \texttt{DDBB\_NAME}: Nombre de la base de datos en Mongo Atlas.
+\end{itemize}
+
+\end{document}
