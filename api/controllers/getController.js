@@ -1,4 +1,4 @@
-import { readAllMenusService, readMesaService } from "../services/getServices.js";
+import { readAllMenusService, readMesaService, readEstadoMesaService } from "../services/getServices.js";
 
 const readAllMenus = async (req, res) => {
   try {
@@ -46,4 +46,27 @@ const readMesa = async (req, res) => {
   }
 };
 
-export { readAllMenus, readMesa };
+const readEstadoMesa = async (req, res) => {
+  try {
+    let statusCode;
+    const responseMod = await readEstadoMesaService(req.query);
+
+    if (responseMod?.type !== "success" || responseMod?.error) {
+      statusCode = 400;
+      console.log(`Status: ${statusCode}, Route: ${req.originalUrl}`);
+      console.log(responseMod);
+
+      res.send(responseMod);
+    } else {
+      statusCode = 200;
+      console.log(`Status: ${statusCode}, Route: ${req.originalUrl}`);
+      res.send(responseMod);
+    }
+  } catch (error) {
+    console.error("Error en readEstadoMesa:", error);
+    let statusCode = 500;
+    console.log(`Status: ${statusCode}, Route: ${req.originalUrl}`);
+  }
+};
+
+export { readAllMenus, readMesa, readEstadoMesa };

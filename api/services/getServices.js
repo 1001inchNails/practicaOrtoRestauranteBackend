@@ -54,4 +54,39 @@ const readMesaService = async (query) => {
   }
 };
 
-export { readAllMenusService, readMesaService };
+const readEstadoMesaService = async (query) => {
+  try {
+    const mesa = query.mesaId;
+    
+    let result;
+
+    if (models.ListaMesa) {
+      result = await models.ListaMesa.findOne({idMesa: mesa});
+    } else {
+      return {
+        type: "failure",
+        message: `Modelo ${mesa} no encontrado`,
+      };
+    }
+
+    if (!result){
+      return {
+      type: "failure",
+      message: "La mesa no existe"
+    };
+    }
+
+    return {
+      type: "success",
+      message: "Informacion encontrada",
+      data: result,
+    };
+  } catch (error) {
+    return {
+      type: "failure",
+      message: `Error en proceso de busqueda: ${error.message}`,
+    };
+  }
+};
+
+export { readAllMenusService, readMesaService, readEstadoMesaService };

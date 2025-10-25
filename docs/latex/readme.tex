@@ -42,6 +42,7 @@ La API está organizada en tres módulos principales:
     \item \textbf{POST}: Operaciones de creación
     \item \textbf{GET}: Operaciones de lectura
     \item \textbf{DELETE}: Operaciones de eliminación
+    \item \textbf{PATCH}: Operaciones de actualización
 \end{itemize}
 
 \subsection{Modelos de Datos}
@@ -65,6 +66,32 @@ const Mesa1Schema = new mongoose.Schema({
 "pedidos": array de objetos Producto.
 \end{verbatim}
 
+
+\subsubsection{Modelo ListaMesa}
+\begin{verbatim}
+  const ListaMesaSchema = new mongoose.Schema({
+  idMesa: {
+            type: String
+          },
+  ocupada: {
+            type: Boolean,
+            default: false
+          }
+});
+\end{verbatim}
+\clearpage
+
+\section{Base de Datos}
+\hyperlink{anchor-indice}{\textbf{Volver}}\\
+
+MongoDB (Atlas).\\
+
+{\textbf{Estructura}}
+\begin{itemize}
+  \item listamesas: contiene los estados de ocupación de las mesas, un documento por mesa.
+  \item mesaX: una colección para cada mesa, contiene todos los pedidos de esa mesa, un documento por cada ronda de pedidos.
+  \item productos: datos de los productos de los menús, un documento por producto.
+\end{itemize}
 \clearpage
 
 \section{Endpoints}
@@ -151,6 +178,22 @@ const Mesa1Schema = new mongoose.Schema({
     \item \textbf{500}: Error en proceso de búsqueda
 \end{itemize}
 
+\subsubsection{GET /get/readestadomesa}
+\textbf{Descripción:} Obtiene el estado de una mesa específica.\\
+
+\textbf{Parámetros:}
+\begin{itemize}
+    \item \texttt{mesaId}: Identificador de la mesa (ej: "Mesa1")
+\end{itemize}
+
+\textbf{Respuestas:}
+\begin{itemize}
+    \item \textbf{200}: Información encontrada
+    \item \textbf{400}: Modelo no encontrado
+    \item \textbf{404}: No hay datos en la colección
+    \item \textbf{500}: Error en proceso de búsqueda
+\end{itemize}
+
 \clearpage
 
 \subsection{Endpoints DELETE}
@@ -173,6 +216,27 @@ const Mesa1Schema = new mongoose.Schema({
 
 \clearpage
 
+\subsection{Endpoints PATCH}
+\hyperlink{anchor-indice}{\textbf{Volver}}\\
+
+\subsubsection{PATCH /patch/cambiarestadomesa}
+\textbf{Descripción:} Cambia el estado de ocupación de una mesa específica.\\
+
+\textbf{Parámetros:}
+\begin{itemize}
+    \item \texttt{mesaId}: Identificador de la mesa (ej: "Mesa1")
+    \item \texttt{ocupada}: booleano que identifica si la mesa está ocupada o no
+\end{itemize}
+
+\textbf{Respuestas:}
+\begin{itemize}
+    \item \textbf{200}: Información actualizada exitosamente
+    \item \textbf{400}: Modelo no encontrado
+    \item \textbf{500}: Error en proceso de borrado
+\end{itemize}
+
+\clearpage
+
 \section{Flujos de Trabajo}
 \hyperlink{anchor-indice}{\textbf{Volver}}\\
 
@@ -188,6 +252,20 @@ const Mesa1Schema = new mongoose.Schema({
     \item Valida que los productos existan en la base de datos
     \item Verifica la estructura de los datos del pedido
     \item Guarda el pedido en la mesa correspondiente
+\end{enumerate}
+
+\subsection{Enviar datos al front}
+\begin{enumerate}
+    \item Valida que los datos existan en la base de datos
+    \item Verifica la estructura de los datos
+    \item Envia los datos
+\end{enumerate}
+
+\subsection{Cambio de datos en BBDD}
+\begin{enumerate}
+    \item Valida que los datos se hayan enviado
+    \item Verifica la estructura de los datos
+    \item Modifica los datos
 \end{enumerate}
 
 \clearpage
