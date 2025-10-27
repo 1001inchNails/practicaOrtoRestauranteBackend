@@ -16,13 +16,13 @@ router.get('/readallmenus', readAllMenus);
 router.get('/readmesa', readMesa);
 /**
  * Ej:
- * http://localhost:5000/read/readmesa?mesaId=Mesa1
+ * http://localhost:5000/get/readmesa?mesaId=Mesa1
  */
 
 router.get('/readestadomesa', readEstadoMesa);
 /**
  * Ej:
- * http://localhost:5000/read/readmesa?mesaId=Mesa1
+ * http://localhost:5000/get/readestadomesa?mesaId=Mesa1
  */
  
 export { router };
