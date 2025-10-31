@@ -216,6 +216,24 @@ MongoDB (Atlas).\\
 
 \clearpage
 
+\subsubsection{DELETE /delete/deletepedido}
+\textbf{Descripción:} Elimina un pedido de una mesa específica.\\
+
+\textbf{Parámetros:}
+\begin{itemize}
+    \item \texttt{mesaId}: Identificador de la mesa (ej: "Mesa1")
+    \item \texttt{idDocu}: Identificador del documento mongo
+\end{itemize}
+
+\textbf{Respuestas:}
+\begin{itemize}
+    \item \textbf{200}: Información borrada exitosamente
+    \item \textbf{400}: Modelo no encontrado
+    \item \textbf{500}: Error en proceso de borrado
+\end{itemize}
+
+\clearpage
+
 \subsection{Endpoints PATCH}
 \hyperlink{anchor-indice}{\textbf{Volver}}\\
 
@@ -226,6 +244,25 @@ MongoDB (Atlas).\\
 \begin{itemize}
     \item \texttt{mesaId}: Identificador de la mesa (ej: "Mesa1")
     \item \texttt{ocupada}: booleano que identifica si la mesa está ocupada o no
+\end{itemize}
+
+\textbf{Respuestas:}
+\begin{itemize}
+    \item \textbf{200}: Información actualizada exitosamente
+    \item \textbf{400}: Modelo no encontrado
+    \item \textbf{500}: Error en proceso de borrado
+\end{itemize}
+
+\clearpage
+
+\subsubsection{PATCH /patch/cambiarestadopedido}
+\textbf{Descripción:} Cambia el estado de servicio (ha sido servido o no a la mesa) de un pedido de una mesa específica.\\
+
+\textbf{Parámetros:}
+\begin{itemize}
+    \item \texttt{mesaId}: Identificador de la mesa (ej: "Mesa1")
+    \item \texttt{iddocu}: Identificador del documento mongo
+    \item \texttt{hasidoservido}: booleano que identifica si ese pedido ha sido servido a mesa o no
 \end{itemize}
 
 \textbf{Respuestas:}

@@ -17,18 +17,20 @@
 \contentsline {subsubsection}{\numberline {4.2.3}GET /get/readestadomesa}{7}{subsubsection.4.2.3}%
 \contentsline {subsection}{\numberline {4.3}Endpoints DELETE}{8}{subsection.4.3}%
 \contentsline {subsubsection}{\numberline {4.3.1}DELETE /delete/deletemesa}{8}{subsubsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.4}Endpoints PATCH}{9}{subsection.4.4}%
-\contentsline {subsubsection}{\numberline {4.4.1}PATCH /patch/cambiarestadomesa}{9}{subsubsection.4.4.1}%
-\contentsline {section}{\numberline {5}Flujos de Trabajo}{10}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Agregar Producto al Menú}{10}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Realizar un Pedido}{10}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Enviar datos al front}{10}{subsection.5.3}%
-\contentsline {subsection}{\numberline {5.4}Cambio de datos en BBDD}{10}{subsection.5.4}%
-\contentsline {section}{\numberline {6}Manejo de Errores}{11}{section.6}%
-\contentsline {section}{\numberline {7}Ejemplos de Uso}{11}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Ejemplo: Crear Producto}{11}{subsection.7.1}%
-\contentsline {subsection}{\numberline {7.2}Ejemplo: Hacer Pedido}{11}{subsection.7.2}%
-\contentsline {section}{\numberline {8}Consideraciones Técnicas}{12}{section.8}%
-\contentsline {section}{\numberline {9}Códigos de Estado HTTP}{12}{section.9}%
-\contentsline {section}{\numberline {10}Stack tecnológico}{12}{section.10}%
-\contentsline {section}{\numberline {11}Variables de entorno (.env)}{12}{section.11}%
+\contentsline {subsubsection}{\numberline {4.3.2}DELETE /delete/deletepedido}{9}{subsubsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.4}Endpoints PATCH}{10}{subsection.4.4}%
+\contentsline {subsubsection}{\numberline {4.4.1}PATCH /patch/cambiarestadomesa}{10}{subsubsection.4.4.1}%
+\contentsline {subsubsection}{\numberline {4.4.2}PATCH /patch/cambiarestadopedido}{11}{subsubsection.4.4.2}%
+\contentsline {section}{\numberline {5}Flujos de Trabajo}{12}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Agregar Producto al Menú}{12}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Realizar un Pedido}{12}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Enviar datos al front}{12}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Cambio de datos en BBDD}{12}{subsection.5.4}%
+\contentsline {section}{\numberline {6}Manejo de Errores}{13}{section.6}%
+\contentsline {section}{\numberline {7}Ejemplos de Uso}{13}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Ejemplo: Crear Producto}{13}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Ejemplo: Hacer Pedido}{13}{subsection.7.2}%
+\contentsline {section}{\numberline {8}Consideraciones Técnicas}{14}{section.8}%
+\contentsline {section}{\numberline {9}Códigos de Estado HTTP}{14}{section.9}%
+\contentsline {section}{\numberline {10}Stack tecnológico}{14}{section.10}%
+\contentsline {section}{\numberline {11}Variables de entorno (.env)}{14}{section.11}%

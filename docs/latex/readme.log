@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.10.5)  25 OCT 2025 18:01
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.10.5)  31 OCT 2025 18:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"c:/Users/dc-cr/Desktop/DAM 1T/code/practicaOrtoRestaurante/backendVS/docs/latex/readme.tex"
-(c:/Users/dc-cr/Desktop/DAM 1T/code/practicaOrtoRestaurante/backendVS/docs/latex/readme.tex
+**"c:/Users/dc-cr/Desktop/DAM 1T/code/practicaOrtoRestaurante/practicaOrtoRestauranteBackend/docs/latex/readme.tex"
+(c:/Users/dc-cr/Desktop/DAM 1T/code/practicaOrtoRestaurante/practicaOrtoRestauranteBackend/docs/latex/readme.tex
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-09-02>
 (C:\Users\dc-cr\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -480,15 +480,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 220--221
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 223--224
-
- []
-
-
 
 [9
 
 ]
+Underfull \hbox (badness 10000) in paragraph at lines 238--239
+
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 241--242
 
  []
@@ -498,7 +498,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 241--242
 [10
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 274--275
+Underfull \hbox (badness 10000) in paragraph at lines 259--260
 
  []
 
@@ -507,13 +507,31 @@ Underfull \hbox (badness 10000) in paragraph at lines 274--275
 [11
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 317--318
+Underfull \hbox (badness 10000) in paragraph at lines 278--279
 
  []
 
 
 
 [12
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 311--312
+
+ []
+
+
+
+[13
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 354--355
+
+ []
+
+
+
+[14
 
 ] (readme.aux
 LaTeX Info: Redefining \. on input line 11.
@@ -524,23 +542,23 @@ LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-09-02>
  ***********
 Package rerunfilecheck Info: File `readme.out' has not changed.
-(rerunfilecheck)             Checksum: A8AE8595DA479857F09C2F3CC31A8F6D;5106.
+(rerunfilecheck)             Checksum: 247A92677162E83ABDA8D034DC51DC68;5543.
  ) 
 Here is how much of TeX's memory you used:
- 11669 strings out of 468130
- 183051 string characters out of 5430633
- 629452 words of memory out of 5000000
- 40099 multiletter control sequences out of 15000+600000
+ 11675 strings out of 468130
+ 183355 string characters out of 5430633
+ 630452 words of memory out of 5000000
+ 40101 multiletter control sequences out of 15000+600000
  633624 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,6n,79p,354b,779s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,6n,79p,385b,779s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 pdfTeX warning (dest): name{anchor-indice} has been referenced but does not exist, replaced by a fixed one
 
  <C:\Users\dc-cr\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk><C:/Users/dc-cr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/dc-cr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/dc-cr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/dc-cr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on readme.pdf (12 pages, 106204 bytes).
+Output written on readme.pdf (14 pages, 109998 bytes).
 PDF statistics:
- 283 PDF objects out of 1000 (max. 8388607)
- 60 named destinations out of 1000 (max. 500000)
- 265 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 303 PDF objects out of 1000 (max. 8388607)
+ 64 named destinations out of 1000 (max. 500000)
+ 281 words of extra memory for PDF output out of 10000 (max. 10000000)
 

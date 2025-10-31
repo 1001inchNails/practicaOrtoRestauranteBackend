@@ -126,6 +126,7 @@ const mandarPedidoAMesaService = async (data) => {
     if (models[mesa]) {
       nuevoMesa = new models[mesa]({
         pedidos: productosGuardados,
+        haSidoServido: false
       });
     } else {
       return {

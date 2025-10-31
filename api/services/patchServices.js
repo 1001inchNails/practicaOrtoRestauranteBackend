@@ -1,5 +1,6 @@
 import models from "../models/index.js";
 
+
 const cambiarEstadoMesaService = async (query) => {
   try {
     const mesa = query.mesaId;
@@ -39,4 +40,45 @@ const cambiarEstadoMesaService = async (query) => {
   }
 };
 
-export { cambiarEstadoMesaService };
+// cambiar estado de haSidoServido de un pedido en concreto
+const cambiarEstadoPedidoService = async (query) => {
+  try {
+    const mesa = query.mesaId;
+    const idDocu = query.iddocu;
+    const nuevoEstado = query.hasidoservido;
+
+    let result;
+    
+    if (models[mesa]) {
+      result = await models[mesa].findOneAndUpdate(
+        { _id: idDocu },
+        { $set: { haSidoServido: nuevoEstado } },
+        { new: true }
+      );
+    } else {
+      return {
+        type: "failure",
+        message: `Modelo ${mesa} no encontrado`,
+      };
+    }
+
+    if (!result) {
+      return {
+        type: "failure",
+        message: `Pedido con id ${idDocu} no encontrado`,
+      };
+    }
+
+    return {
+      type: "success",
+      message: "Estado del pedido actualizado correctamente",
+    };
+  } catch (error) {
+    return {
+      type: "failure",
+      message: `Error en proceso de actualización: ${error.message}`,
+    };
+  }
+};
+
+export { cambiarEstadoMesaService, cambiarEstadoPedidoService };

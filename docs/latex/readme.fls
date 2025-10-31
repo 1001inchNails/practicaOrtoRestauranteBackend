@@ -1,6 +1,6 @@
-PWD c:\Users\dc-cr\Desktop\DAM 1T\code\practicaOrtoRestaurante\backendVS\docs\latex
+PWD c:\Users\dc-cr\Desktop\DAM 1T\code\practicaOrtoRestaurante\practicaOrtoRestauranteBackend\docs\latex
 INPUT C:\Users\dc-cr\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Users\dc-cr\Desktop\DAM 1T\code\practicaOrtoRestaurante\backendVS\docs\latex\readme.tex
+INPUT c:\Users\dc-cr\Desktop\DAM 1T\code\practicaOrtoRestaurante\practicaOrtoRestauranteBackend\docs\latex\readme.tex
 OUTPUT readme.log
 INPUT C:\Users\dc-cr\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
 INPUT C:\Users\dc-cr\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
