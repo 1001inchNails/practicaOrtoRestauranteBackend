@@ -6,7 +6,7 @@ const Mesa1Schema = new mongoose.Schema({
   },
   haSidoServido: {
     type: Boolean,
-  },
+  }
 });
 
 const Mesa1 = mongoose.model("Mesa1", Mesa1Schema);
