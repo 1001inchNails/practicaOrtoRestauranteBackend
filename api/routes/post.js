@@ -1,7 +1,7 @@
 import { Router } from "express";
 import {
   createObjetoMenu,
-  mandarPedidoAMesa
+  mandarPedidoDeMesa
 } from "../controllers/postController.js";
 
 const router = Router();
@@ -18,7 +18,7 @@ router.post('/createobjetomenu', createObjetoMenu);
   "descripcion": "Test Producto 004 precio 4.4"
 }
  */
-router.post('/mandarpedidoamesa', mandarPedidoAMesa);
+router.post('/mandarpedidodemesa', mandarPedidoDeMesa);
 /*
 ejemplo:
 {

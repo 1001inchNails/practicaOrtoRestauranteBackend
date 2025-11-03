@@ -1,4 +1,4 @@
-import { createObjetoMenuService, mandarPedidoAMesaService } from "../services/postServices.js";
+import { createObjetoMenuService, mandarPedidoDeMesaService } from "../services/postServices.js";
 
 const createObjetoMenu = async (req, res) => {
   try {
@@ -23,10 +23,10 @@ const createObjetoMenu = async (req, res) => {
   }
 };
 
-const mandarPedidoAMesa = async (req, res) => {
+const mandarPedidoDeMesa = async (req, res) => {
   try {
     let statusCode;
-    const responseMod = await mandarPedidoAMesaService(req.body);
+    const responseMod = await mandarPedidoDeMesaService(req.body);
 
     if (responseMod?.type !== "success" || responseMod?.error) {
       statusCode = 400;
@@ -47,4 +47,4 @@ const mandarPedidoAMesa = async (req, res) => {
 };
 
 
-export { createObjetoMenu, mandarPedidoAMesa };
+export { createObjetoMenu, mandarPedidoDeMesa };

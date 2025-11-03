@@ -62,7 +62,7 @@ const createObjetoMenuService = async (data) => {
   }
 };
 
-const mandarPedidoAMesaService = async (data) => {
+const mandarPedidoDeMesaService = async (data) => {
   try {
     if (!Array.isArray(data.pedidos)) {
       return {
@@ -86,7 +86,8 @@ const mandarPedidoAMesaService = async (data) => {
         producto.id !== undefined &&
         producto.nombre !== undefined &&
         producto.descripcion !== undefined &&
-        !isNaN(producto.precio)
+        !isNaN(producto.precio) &&
+        !isNaN(producto.cantidad)
       );
     });
 
@@ -104,6 +105,7 @@ const mandarPedidoAMesaService = async (data) => {
         id: Number(productoData.id),
         nombre: productoData.nombre,
         precio: Number(productoData.precio),
+        cantidad: Number(productoData.cantidad),
         descripcion: productoData.descripcion,
       };
 
@@ -157,4 +159,4 @@ const mandarPedidoAMesaService = async (data) => {
   }
 };
 
-export { createObjetoMenuService, mandarPedidoAMesaService };
+export { createObjetoMenuService, mandarPedidoDeMesaService };
