@@ -1,6 +1,11 @@
+
+
+funcion javafx para manualmente resetear mesa a libre
+
+
 colores para textos diferentes en movil y desktop
 todo scrollable en javafx
 meterle sonido o cambio de colores al recibir mensaje tanto en movil como javafx
 
-funcion javafx para manualmente resetear mesa a libre
-cambiar los datos mostrados de pedidos enviados en desktop, incluir cantidades
+
+ordenar movil app
