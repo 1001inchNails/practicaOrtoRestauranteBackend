@@ -1,11 +1,6 @@
+tunear log
 
-
-funcion javafx para manualmente resetear mesa a libre
-
-
-colores para textos diferentes en movil y desktop
-todo scrollable en javafx
-meterle sonido o cambio de colores al recibir mensaje tanto en movil como javafx
-
+comentar desktop
 
 ordenar movil app
+ordenar java app (cuidado con API)
