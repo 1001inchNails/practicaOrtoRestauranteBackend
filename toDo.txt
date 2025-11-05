@@ -1,6 +1,4 @@
-tunear log
-
-comentar desktop
-
 ordenar movil app
 ordenar java app (cuidado con API)
+
+FRONTEND
